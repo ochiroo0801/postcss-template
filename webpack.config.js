@@ -6,7 +6,15 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundled.js'
     },
-    watch: true,
+    devServer: {
+        before: function (app, server) {
+            server._watch("./src/**/*.html")
+        },
+        contentBase: path.join(__dirname, 'src'),
+        compress: true,
+        port: 3000
+    },
+
     module: {
         rules: [
             {
